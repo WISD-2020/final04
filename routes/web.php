@@ -28,3 +28,11 @@ Route::get('/shopping', function () {
 Route::get('/cart', function () {
     return view('/cart/index');
 });
+
+Route::get('/user', function () {
+    return view('/user/index');
+});
+
+Route::get('/admin', function () {
+    return view('/admin/index');
+});
