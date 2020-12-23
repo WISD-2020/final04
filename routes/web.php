@@ -21,6 +21,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/sendmail', [\App\Http\Controllers\MailController::class, 'send']);
+
 Route::get('/shopping', function () {
     return view('/shopping/index');
 });
