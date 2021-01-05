@@ -21,7 +21,7 @@
     </style>
 </head>
 <body class="antialiased">
-<center><h1>歡迎頁面</h1></center>
+<center><h1>我的訂單</h1></center>
 <div class="">
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

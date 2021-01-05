@@ -31,6 +31,10 @@ Route::get('/cart', function () {
     return view('/cart/index');
 });
 
+Route::get('/order', function () {
+    return view('/order/index');
+});
+
 Route::get('/user', function () {
     return view('/user/index');
 });
