@@ -19,7 +19,7 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="{{ route('home.index') }}"><i class="fa fa-fw fa-user"></i> 返回前端</a>
+                            <a href="{{ route('welcome.index') }}"><i class="fa fa-fw fa-user"></i> 返回前端</a>
                         </li>
                         <li>
                             <a href="{{ route('user.show') }}"><i class="fa fa-fw fa-user"></i> 會員資料</a>
