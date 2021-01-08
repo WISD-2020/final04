@@ -13,7 +13,7 @@ class AdminUserController extends Controller
         $data = [
             'users' => $users
         ];
-        return view('admin.members.index',$data);
+        return view('admin.userlists.index',$data);
     }
 
     public function edit($id)
@@ -21,19 +21,19 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $data = ['user' => $user];
 
-        return view('admin.members.edit', $data);
+        return view('admin.userlists.edit', $data);
     }
 
     public function update(Request $request, $id)
     {
         $user = User::find($id);
         $user->update($request->all());
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.userlists.index');
     }
 
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.userlists.index');
     }
 }

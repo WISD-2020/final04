@@ -22,7 +22,7 @@
                             <a href="{{ route('home.index') }}"><i class="fa fa-fw fa-user"></i> 返回前端</a>
                         </li>
                         <li>
-                            <a href="{{ route('profile.show') }}"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="{{ route('user.show') }}"><i class="fa fa-fw fa-user"></i> 會員資料</a>
                         </li>
 
 
@@ -47,10 +47,10 @@
                 <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-fw fa-dashboard"></i> 主控台</a>
             </li>
             <li>
-                <a href="{{route('admin.members.index')}}"><i class="fa fa-fw fa-edit"></i> 會員管理</a>
+                <a href="{{route('admin.userlists.index')}}"><i class="fa fa-fw fa-edit"></i> 會員管理</a>
             </li>
             <li>
-                <a href="{{route('admin.menus.index')}}"><i class="fa fa-fw fa-edit"></i> 餐點管理</a>
+                <a href="{{route('admin.productlists.index')}}"><i class="fa fa-fw fa-edit"></i> 商品管理</a>
             </li>
             <li>
                 <a href="{{route('admin.orderlists.index')}}"><i class="fa fa-fw fa-edit"></i> 訂單管理</a>
