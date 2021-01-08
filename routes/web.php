@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminDashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +15,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//管理員
+Route::prefix('admin')->group(function (){
+    Route::get('/',[AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
+});
 
+
+//會員
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');;
@@ -21,7 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/sendmail', [\App\Http\Controllers\MailController::class, 'send']);
+Route::get('/sendmail', [MailController::class, 'send']);
 
 Route::get('/shopping', function () {
     return view('/shopping/index');
