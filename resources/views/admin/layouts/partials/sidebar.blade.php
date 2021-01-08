@@ -11,49 +11,31 @@
         <a class="navbar-brand" href="{{ route('admin.dashboard.index') }}">管理後台</a>
     </div>
     <!-- Top Menu Items -->
-    @if (Route::has('login'))
-        @auth
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Auth::user()->name}} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a href="{{ route('welcome.index') }}"><i class="fa fa-fw fa-user"></i> 返回前端</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.show') }}"><i class="fa fa-fw fa-user"></i> 會員資料</a>
-                        </li>
-
-
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                       this.closest('form').submit();"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                            </li>
-                        </form>
-                    </ul>
+    <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 管理員 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
-    @endauth
-@endif
-<!-- Sidebar Menu Items - These collapse to the responsive navigation menus on small screens -->
+        </li>
+    </ul>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menus on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li class="active">
                 <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-fw fa-dashboard"></i> 主控台</a>
-            </li>
-            <li>
-                <a href="{{route('admin.userlists.index')}}"><i class="fa fa-fw fa-edit"></i> 會員管理</a>
-            </li>
-            <li>
-                <a href="{{route('admin.productlists.index')}}"><i class="fa fa-fw fa-edit"></i> 商品管理</a>
-            </li>
-            <li>
-                <a href="{{route('admin.orderlists.index')}}"><i class="fa fa-fw fa-edit"></i> 訂單管理</a>
             </li>
 
 

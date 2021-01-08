@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminDashboardController;
 */
 //管理員
 Route::prefix('admin')->group(function (){
-    Route::get('/',[AdminDashboardController::class, 'index'])->middleware('auth')->name('admin.dashboard.index');
+    Route::get('/',[AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
 
 });
 
