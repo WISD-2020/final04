@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>lara_0901</title>
+    <title>購屋車 | final04</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,6 +26,7 @@
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
+                <a href="{{ url('/') }}"            class="text-lg text-black underline">首頁</a>
                 <a href="{{ url('/shopping') }}"    class="text-lg text-black underline">商店</a>
                 <a href="{{ url('/cart') }}"        class="text-lg text-black underline">購物車</a>
                 <a href="{{ url('/order') }}"       class="text-lg text-black underline">我的訂單</a>
@@ -40,5 +41,6 @@
         </div>
     @endif
 </div>
+
 </body>
 </html>
