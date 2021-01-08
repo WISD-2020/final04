@@ -25,15 +25,15 @@ Route::get('/sendmail', [\App\Http\Controllers\MailController::class, 'send']);
 
 Route::get('/shopping', function () {
     return view('/shopping/index');
-});
+})->name('shop');
 
 Route::get('/cart', function () {
     return view('/cart/index');
-});
+})->name('cart');
 
 Route::get('/order', function () {
     return view('/order/index');
-});
+})->name('order');
 
 Route::get('/user', function () {
     return view('/user/index');
