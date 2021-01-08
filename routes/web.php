@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminDashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//管理員
+Route::prefix('admin')->group(function (){
+    Route::get('/',[AdminDashboardController::class, 'index'])->middleware('auth')->name('admin.dashboard.index');
 
+});
+
+
+//會員
 Route::get('/', function () {
     return view('welcome');
 });
