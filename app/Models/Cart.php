@@ -12,11 +12,11 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'o_id',
+        'u_id',
         'p_id',
         'price',
         'num',
-        'total',
+        'sum',
     ];
 
     public function user()

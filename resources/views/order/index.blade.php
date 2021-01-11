@@ -11,7 +11,7 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{route('welcome')}}">首頁</a>
+                <a href="{{route('shop')}}">首頁</a>
             </li>
             <li class="breadcrumb-item active">我的訂單</li>
         </ol>

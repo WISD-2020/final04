@@ -11,7 +11,7 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{route('welcome')}}">首頁</a>
+                <a href="{{route('shop')}}">首頁</a>
             </li>
             <li class="breadcrumb-item active">巧克力一覽</li>
         </ol>
@@ -35,7 +35,6 @@
                 </div>
 
             @endforeach
-
         </div>
     </div>
 @endsection
