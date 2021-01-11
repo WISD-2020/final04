@@ -4,7 +4,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 
-
+use App\Http\Controllers\ProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,9 +32,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/sendmail', [MailController::class, 'send']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/shopping', function () {
-    return view('/shopping/index');
-})->name('shop');
+Route::middleware(['auth:sanctum', 'verified'])->
+    get('/products', [ProductsController::class, 'index'])->name('shop');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
     return view('/cart/index');
@@ -47,4 +46,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/order', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/user', function () {
     return view('/user/index');
 });
-
