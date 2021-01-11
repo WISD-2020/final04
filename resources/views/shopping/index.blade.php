@@ -13,12 +13,14 @@
             <li class="breadcrumb-item">
                 <a href="{{route('welcome')}}">首頁</a>
             </li>
-            <li class="breadcrumb-item active">商品區</li>
+            <li class="breadcrumb-item active">巧克力一覽</li>
         </ol>
 
-        <div class="row">
+        <?php
+        echo 'http://localhost:8000/shopping';
 
-        </div>
+
+        ?>
+
     </div>
-
 @endsection
