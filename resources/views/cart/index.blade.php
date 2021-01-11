@@ -29,6 +29,7 @@ $total = CartsController::total();
 
             <table width="100%">
 
+
                 <tr align="center">
                     <td colspan="4"><h1>合計 ${{$total}}</h1></td>
                 </tr>

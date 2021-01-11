@@ -5,15 +5,15 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('welcome') }}">
+                    <a href="{{ route('shop') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('welcome') }}
+                    <x-jet-nav-link href="{{ route('shop') }}" :active="request()->routeIs('shop')">
+                        {{ __('shop') }}
                     </x-jet-nav-link>
                 </div>
             </div>

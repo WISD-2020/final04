@@ -12,10 +12,6 @@ class CartsController extends Controller
     {
         $userid = auth()->user()->id;
 
-        $data = [
-            'results' => $results,
-        ];
-
         return view('/cart/index', $data);
     }
 

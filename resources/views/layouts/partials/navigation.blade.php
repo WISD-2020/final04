@@ -32,11 +32,11 @@ use App\Models\Cart;
                     @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                               aria-expanded="false" href="">{{Auth::user()->name}}</a>
+                               aria-expanded="false" href="">{{Auth::user()->name}} 您好</a>
                             <ul class="dropdown-menu">
                                 <!-- Account Management -->
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('profile.show') }}">{{ __('Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.show') }}">{{ __('個人資料') }}</a>
                                 </li>
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
@@ -45,7 +45,7 @@ use App\Models\Cart;
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                            {{ __('Logout') }}
+                                            {{ __('登出') }}
                                         </a>
                                 </form>
                             </ul>
