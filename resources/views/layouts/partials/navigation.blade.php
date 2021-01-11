@@ -1,62 +1,38 @@
 <?php
-
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartsController;
 use App\Models\Cart;
 
-$total = CartController::cartItem();
-$true = HomeController::isAdmin();
 ?>
-
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{route('home.index')}}">勤益線上點餐系統</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="{{route('shop')}}">final04</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                @if (Route::has('login'))
-                    @auth
-                        @if($true == 1 )
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('admin.dashboard.index')}}">返回後台</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('home.index')}}">首頁</a>
-                            </li>
-                        @else()
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('home.login_index')}}">首頁</a>
-                            </li>
-                        @endif
-                @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('home.index')}}">首頁</a>
-                        </li>
-                    @endauth
-                @endif
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('products.index')}}">菜單</a>
+                    <a class="nav-link" href="{{route('shop')}}">商品區</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('carts.index')}}">
-                        <i class="fas fa-shopping-cart fa-lg"></i>
-                        CART({{$total}})
-                    </a>
+                    <a class="nav-link" href="{{route('cart')}}">購物車</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('orders.index')}}">訂單查詢</a>
+                    <a class="nav-link" href="{{route('order')}}">我的訂單</a>
                 </li>
 
                 <li class="nav-item">
                 @if (Route::has('login'))
                     @auth
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">{{Auth::user()->name}}</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false" href="">{{Auth::user()->name}}</a>
                             <ul class="dropdown-menu">
                                 <!-- Account Management -->
                                 <li>
@@ -76,12 +52,12 @@ $true = HomeController::isAdmin();
                         </li>
 
                     @else
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}">登入</a>
                         </li>
 
                         <li class="nav-item">
                             @if (Route::has('register'))
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <a class="nav-link" href="{{ route('register') }}">註冊</a>
                             @endif
                         </li>
                     @endauth

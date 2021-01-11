@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function (){
 
 //會員
 Route::get('/', function () {
-    return view('welcome');
+    return view('/shopping/index');
 })->name('welcome');;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -32,22 +32,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/sendmail', [MailController::class, 'send']);
 
-Route::get('/shopping', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/shopping', function () {
     return view('/shopping/index');
 })->name('shop');
 
-Route::get('/cart', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
     return view('/cart/index');
 })->name('cart');
 
-Route::get('/order', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/order', function () {
     return view('/order/index');
 })->name('order');
 
-Route::get('/user', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/user', function () {
     return view('/user/index');
 });
 
-Route::get('/admin', function () {
-    return view('/admin/index');
-});
