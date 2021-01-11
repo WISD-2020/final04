@@ -16,10 +16,6 @@
             <li class="breadcrumb-item active">我的訂單</li>
         </ol>
 
-        <?php
-        echo 'http://localhost:8000/order';
-        ?>
-
     </div>
     <!-- /.container -->
 @endsection

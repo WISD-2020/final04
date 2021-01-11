@@ -16,10 +16,6 @@
             <li class="breadcrumb-item active">個人資料</li>
         </ol>
 
-        <?php
-        echo 'http://localhost:8000/user';
-        ?>
-
     </div>
     <!-- /.container -->
 @endsection

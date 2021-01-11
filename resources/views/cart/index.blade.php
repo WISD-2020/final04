@@ -16,10 +16,6 @@
             <li class="breadcrumb-item active">購物車一覽</li>
         </ol>
 
-        <?php
-        echo 'http://localhost:8000/cart';
-        ?>
-
     </div>
     <!-- /.container -->
 @endsection

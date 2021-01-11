@@ -16,11 +16,5 @@
             <li class="breadcrumb-item active">巧克力一覽</li>
         </ol>
 
-        <?php
-        echo 'http://localhost:8000/shopping';
-
-
-        ?>
-
     </div>
 @endsection
