@@ -7,6 +7,22 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+DROP TABLE IF EXISTS `carts`;
+CREATE TABLE `carts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `u_id` int(10) unsigned NOT NULL,
+  `p_id` int(10) unsigned NOT NULL,
+  `price` int(11) NOT NULL,
+  `num` int(11) NOT NULL,
+  `sum` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `carts` (`id`, `u_id`, `p_id`, `price`, `num`, `sum`, `created_at`, `updated_at`) VALUES
+(1,	1,	1,	1,	1,	1,	NULL,	NULL);
+
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -35,7 +51,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8,	'2014_10_12_200000_add_two_factor_columns_to_users_table',	2),
 (9,	'2019_08_19_000000_create_failed_jobs_table',	2),
 (10,	'2019_12_14_000001_create_personal_access_tokens_table',	2),
-(11,	'2020_12_18_075641_create_sessions_table',	2);
+(11,	'2020_12_18_075641_create_sessions_table',	2),
+(12,	'2021_01_11_205733_create_carts_table',	3);
 
 DROP TABLE IF EXISTS `orderdetails`;
 CREATE TABLE `orderdetails` (
@@ -121,7 +138,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('uI1wdRONF2NYmL9WOHpbwuoYvOq4ZnDELJzCmEaC',	3,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZExUWVBiTnVwSllZMERBQ3czdFRZZXhGSGpqY2VOR09iMGh3MU1ueCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zaG9wcGluZyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCQzQkR2MEE2cjA4SmVSTXFKQmFQSnB1WWdzNnFxMU1hM3NSc21OUXprQ1NiZlg2M01GTnFEeSI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkM0JEdjBBNnIwOEplUk1xSkJhUEpwdVlnczZxcTFNYTNzUnNtTlF6a0NTYmZYNjNNRk5xRHkiO30=',	1610090712);
+('2kGvm3xs0O4LHAuse5e04LYi76pgyU41xnyRZ4uR',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoibzdYcnNnRlhaR1J0aE94Y1NPeEx5aXVmb0RUNDlDZXVEWFF1VW5RdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYWRtaW4iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610402279);
 
 DROP TABLE IF EXISTS `shoppingcarts`;
 CREATE TABLE `shoppingcarts` (
@@ -158,7 +175,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
 (1,	'JUN-YOU YE.',	'3a732036@gm.student.ncut.edu.tw',	NULL,	'$2y$10$qa1350oFX2y0PBvRDJizMut39k8CNcQvU/fLxXkLDiTXB2TU/9eIK',	NULL,	NULL,	NULL,	NULL,	NULL,	'2020-12-18 00:09:10',	'2020-12-18 00:09:10'),
-(2,	'36',	'onejun3096@gmail.com',	NULL,	'$2y$10$NaGgEeFK4/cp6MZ9DvMrmuNZOGdHrGy.rf99jD.giYTlLuPPSOd7W',	NULL,	NULL,	'arZyEYtdgWiZHuNXzvEyLWSafNv42KDg7Og8b9pXZA4k1orsmDFw4uY0UG0A',	NULL,	NULL,	'2020-12-22 17:18:25',	'2021-01-05 05:02:24'),
+(2,	'36',	'onejun3096@gmail.com',	NULL,	'$2y$10$NaGgEeFK4/cp6MZ9DvMrmuNZOGdHrGy.rf99jD.giYTlLuPPSOd7W',	NULL,	NULL,	'jyQ5XHJqF1l5Jxk1eloJQaylGSRsI7eZOy6wg9dvYuLIlTYusAL0kwfYZtdS',	NULL,	NULL,	'2020-12-22 17:18:25',	'2021-01-05 05:02:24'),
 (3,	'2021',	'2021@gmail.com',	NULL,	'$2y$10$3BDv0A6r08JeRMqJBaPJpuYgs6qq1Ma3sRsmNQzkCSbfX63MFNqDy',	NULL,	NULL,	NULL,	NULL,	NULL,	'2021-01-07 22:43:37',	'2021-01-07 22:43:37');
 
--- 2021-01-08 07:50:49
+-- 2021-01-11 21:58:32

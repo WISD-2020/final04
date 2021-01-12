@@ -4,6 +4,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,14 @@ use App\Http\Controllers\AdminDashboardController;
 |
 */
 //管理員
-Route::prefix('admin')->group(function (){
-    Route::get('/',[AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
 });
 
 
 //會員
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware(['auth:sanctum', 'verified'])->
+get('/', [ProductsController::class, 'index'])->name('shop');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -32,22 +32,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/sendmail', [MailController::class, 'send']);
 
-Route::get('/shopping', function () {
-    return view('/shopping/index');
-})->name('shop');
+Route::middleware(['auth:sanctum', 'verified'])->
+get('/products', [ProductsController::class, 'index'])->name('shop');
 
-Route::get('/cart', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
     return view('/cart/index');
 })->name('cart');
 
-Route::get('/order', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/order', function () {
     return view('/order/index');
 })->name('order');
 
-Route::get('/user', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/user', function () {
     return view('/user/index');
-});
-
-Route::get('/admin', function () {
-    return view('/admin/index');
 });
