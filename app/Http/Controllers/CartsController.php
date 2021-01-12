@@ -25,13 +25,13 @@ class CartsController extends Controller
                 'carts.num')
             ->get();
 
-        return view('/cart/index', $carts);
+        return view('cart.index', $carts);
     }
 
     public function destroy($id)
     {
         Cart::destroy($id);
-        return redirect()->route('/cart/index');
+        return redirect()->route('cart.index');
     }
 
     static public function total()

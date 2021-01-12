@@ -49,16 +49,26 @@ $total = CartsController::total();
                     <td><b>商品名稱</b></td>
                     <td><b>單價</b></td>
                     <td><b>數量</b></td>
+                    <td><b>小計</b></td>
+                    <td><b>操作</b></td>
                 </tr>
                 @foreach($carts as $cart)
                     <div class="col-lg-4 col-sm-6 portfolio-item">
                         <tr align="center">
                             <td style="width: 100px"><img height="200px" src="{{$cart->img}}"></td>
                             <td>{{$cart->name}}</td>
-                            <td>${{$cart->price}}</td>
-                            <td>{{$cart->num}}</td>
+                            <td style="width: 100px">${{$cart->price}}</td>
+                            <td style="width: 100px">{{$cart->num}}</td>
+                            <td style="width: 100px">{{$cart->num*$cart->price}}</td>
+                            <form action="{{route('cart.destroy',$cart->id)}}" method="POST" style="display:inline">
+                                @method('delete')
+                                @csrf
+                                <td class="align-middle" style="width:150px ">
 
-
+                                    <button type="submit" style="border: 0;background-color: white">移出購物車<i
+                                            class="far fa-trash-alt mr-3"></i></button>
+                                </td>
+                            </form>
                         </tr>
                     </div>
                     <?php $total += $cart->price * $cart->num?>
