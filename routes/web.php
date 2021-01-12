@@ -4,6 +4,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminProductlistController;
 
 use App\Http\Controllers\ProductsController;
 
@@ -28,12 +29,14 @@ Route::prefix('admin')->group(function () {
     Route::delete('userlists/{id}',[AdminUserController::class, 'destroy'])->name('admin.userlists.destroy');                 //刪除會員資料
     Route::delete('userlists/{id}', [AdminUserController::class, 'destroy'])->name('admin.userlists.destroy');
 
-    Route::get('productlists', [AdminProductlistController::class, 'index'])->name('admin.productlists.index');                                  //商品管理(顯示所有商品)
-    Route::get('productlists/create', [AdminProductlistController::class, 'create'])->name('admin.productlists.create');                         //新增商品
-    Route::post('productlists/store',[AdminProductlistController::class, 'store'])->name('admin.productlists.store');                            //儲存商品
-    Route::get('productlists/{id}/edit', [AdminProductlistController::class, 'edit'])->name('admin.productlists.edit');                          //編輯商品
-    Route::patch('productlists/{id}',[AdminProductlistController::class, 'update'])->name('admin.productlists.update');                          //更新商品
-    Route::delete('productlists/{id}',[AdminProductlistController::class, 'destroy'])->name('admin.productlists.destroy');                       //刪除商品
+    Route::get('productlists', [AdminProductlistController::class, 'index'])->name('admin.productlists.index');               //商品管理(顯示所有商品)
+    Route::get('productlists/create', [AdminProductlistController::class, 'create'])->name('admin.productlists.create');      //新增商品
+    Route::post('productlists/store',[AdminProductlistController::class, 'store'])->name('admin.productlists.store');         //儲存商品
+    Route::get('productlists/{id}/edit', [AdminProductlistController::class, 'edit'])->name('admin.productlists.edit');       //編輯商品
+    Route::patch('productlists/{id}',[AdminProductlistController::class, 'update'])->name('admin.productlists.update');       //更新商品
+    Route::delete('productlists/{id}',[AdminProductlistController::class, 'destroy'])->name('admin.productlists.destroy');    //刪除商品
+
+
 });
 
 

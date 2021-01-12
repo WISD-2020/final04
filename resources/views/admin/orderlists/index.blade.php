@@ -36,7 +36,6 @@
                         <th  style="text-align: center">總金額</th>
                         <th  style="text-align: center">訂單狀態</th>
                         <th  style="text-align: center">方法</th>
-                        <th  style="text-align: center">功能</th>
                     </tr>
                     </thead>
                     <tbody>
