@@ -9,9 +9,9 @@ class AdminProductlistController extends Controller
 {
     public function index()
     {
-        $menus = Product::orderBy('type','ASC')->paginate(12);
+        $productlists1 = Product::orderBy('type','ASC')->paginate(12);
         $data = [
-            'menus' => $menus
+            'productlists' => $productlists1
 
         ];
         return view('admin.productlists.index',$data);
@@ -44,7 +44,7 @@ class AdminProductlistController extends Controller
 
 
         //Product::create($request->all());
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.productlists.index');
     }
 
     public function edit($id)

@@ -49,6 +49,9 @@
             <li>
                 <a href="{{route('admin.userlists.index')}}"><i class="fa fa-fw fa-edit"></i> 會員管理</a>
             </li>
+            <li>
+                <a href="{{route('admin.productlists.index')}}"><i class="fa fa-fw fa-edit"></i> 商品管理</a>
+            </li>
 
 
 
