@@ -20,9 +20,7 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `carts` (`id`, `u_id`, `p_id`, `price`, `num`, `updated_at`, `created_at`) VALUES
-(1,	2,	1,	100,	9,	'2021-01-12 15:18:05',	'0000-00-00 00:00:00'),
-(2,	2,	2,	50,	10,	'2021-01-12 15:18:05',	'0000-00-00 00:00:00'),
-(8,	2,	3,	500,	3,	'2021-01-12 07:23:38',	'2021-01-12 07:23:38');
+(20,	2,	3,	500,	5,	'2021-01-12 09:10:11',	'2021-01-12 09:10:11');
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -63,29 +61,31 @@ CREATE TABLE `orderdetails` (
   `price` int(10) NOT NULL,
   `num` int(10) NOT NULL,
   `total` bigint(20) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `o_id` (`o_id`),
   KEY `p_id` (`p_id`),
-  CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`o_id`) REFERENCES `orders` (`id`),
-  CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `products` (`id`)
+  CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `orderdetails_ibfk_3` FOREIGN KEY (`o_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `orderdetails` (`id`, `o_id`, `p_id`, `price`, `num`, `total`) VALUES
-(2,	1,	2,	50,	50,	500);
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `u_id` bigint(20) unsigned NOT NULL,
   `total` bigint(20) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `u_id` (`u_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `orders` (`id`, `u_id`, `total`, `time`) VALUES
-(1,	2,	200,	'2021-01-12 10:15:58');
+INSERT INTO `orders` (`id`, `u_id`, `total`, `updated_at`, `created_at`) VALUES
+(14,	2,	350,	'2021-01-12 09:09:26',	'2021-01-12 09:09:26'),
+(15,	2,	2500,	'2021-01-12 09:10:31',	'2021-01-12 09:10:31');
 
 DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
@@ -147,7 +147,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('oV73JIkV66b9ak3M26JBUBJO0tgDZ4kUbRyxLz3a',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiTk1MbU1rOWhQcmZJZG5oV25CV2U3dURHRW5pR2dwUUhwbHdBNExOcSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvb3JkZXIiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610465254);
+('oV73JIkV66b9ak3M26JBUBJO0tgDZ4kUbRyxLz3a',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiTk1MbU1rOWhQcmZJZG5oV25CV2U3dURHRW5pR2dwUUhwbHdBNExOcSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvcHJvZHVjdHMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610471435);
 
 DROP TABLE IF EXISTS `shoppingcarts`;
 CREATE TABLE `shoppingcarts` (
@@ -187,4 +187,4 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tw
 (2,	'36',	'onejun3096@gmail.com',	NULL,	'$2y$10$NaGgEeFK4/cp6MZ9DvMrmuNZOGdHrGy.rf99jD.giYTlLuPPSOd7W',	NULL,	NULL,	'FWqThCvwGBqMiXniY3SYfgAkETkGW6uRASY7yFZQ38otVoLLcCnUXoQIrgqs',	NULL,	NULL,	'2020-12-22 17:18:25',	'2021-01-05 05:02:24'),
 (3,	'2021',	'2021@gmail.com',	NULL,	'$2y$10$3BDv0A6r08JeRMqJBaPJpuYgs6qq1Ma3sRsmNQzkCSbfX63MFNqDy',	NULL,	NULL,	NULL,	NULL,	NULL,	'2021-01-07 22:43:37',	'2021-01-07 22:43:37');
 
--- 2021-01-12 15:28:44
+-- 2021-01-12 17:11:04

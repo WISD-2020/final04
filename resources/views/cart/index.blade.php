@@ -59,7 +59,7 @@ $total = CartsController::total();
                             <td>{{$cart->name}}</td>
                             <td style="width: 100px">${{$cart->price}}</td>
                             <td style="width: 100px">{{$cart->num}}</td>
-                            <td style="width: 100px">{{$cart->num*$cart->price}}</td>
+                            <td>{{$cart->num*$cart->price}}</td>
                             <form action="{{route('cart.destroy',$cart->id)}}" method="POST" style="display:inline">
                                 @method('delete')
                                 @csrf
@@ -85,8 +85,12 @@ $total = CartsController::total();
                     href="{{route('shop.index')}}">繼續選購</a>
             </button>
 
-            <a href="{{route('order.index')}}" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認付款</a>
-            </form>
+            @foreach($carts as $cart)
+                <form action="{{route('order.store')}}" method="POST" style="display:inline">{{ csrf_field() }}
+                    <input type="hidden" name="total" value="{{$cart->price * $cart->num}}">
+                    <button type="submit" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認結帳</button>
+                </form>
+            @endforeach
         </div>
     </div>
 

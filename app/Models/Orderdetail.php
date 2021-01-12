@@ -12,16 +12,15 @@ class Orderdetail extends Model
     protected $table = 'orderdetails';
 
     protected $fillable = [
-        'o_id',
         'p_id',
         'price',
         'num',
         'total',
     ];
 
-    public function orderlists()
+    public function orders()
     {
-        $this->belongsTo(Orderlist::class);
+        $this->belongsTo(Order::class);
     }
 
     public function products()

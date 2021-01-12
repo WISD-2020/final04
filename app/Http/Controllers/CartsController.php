@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Orderlist;
-use App\Models\Orderdetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
