@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//管理員
+// 管理員
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
 
@@ -32,10 +32,12 @@ Route::prefix('admin')->group(function () {
     Route::get('productlists/{id}/edit', [AdminProductlistController::class, 'edit'])->name('admin.productlists.edit');                          //編輯商品
     Route::patch('productlists/{id}',[AdminProductlistController::class, 'update'])->name('admin.productlists.update');                          //更新商品
     Route::delete('productlists/{id}',[AdminProductlistController::class, 'destroy'])->name('admin.productlists.destroy');                       //刪除商品
+    Route::patch('userlists/{id}', [AdminUserController::class, 'update'])->name('admin.userlists.update');                    //更新會員資料
+    Route::delete('userlists/{id}', [AdminUserController::class, 'destroy'])->name('admin.userlists.destroy');
 });
 
 
-//會員
+// 會員
 Route::middleware(['auth:sanctum', 'verified'])->
 get('/', [ProductsController::class, 'index'])->name('shop');
 
@@ -48,9 +50,21 @@ Route::get('/sendmail', [MailController::class, 'send']);
 Route::middleware(['auth:sanctum', 'verified'])->
 get('/products', [ProductsController::class, 'index'])->name('shop');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
+
+// 購物車路由
+Route::get('/cart', function () {
     return view('/cart/index');
 })->name('cart');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->post('/cart', [CartsController::class, 'index'])
+    ->name('cart.index');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->delete('/cart/{id}', [CartsController::class, 'destroy'])
+    ->name('cart.destroy');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->post('/cart/add', [CartsController::class, 'store'])
+    ->name('shop.store');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/order', function () {
     return view('/order/index');

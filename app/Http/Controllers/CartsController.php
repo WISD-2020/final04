@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Orderlist;
+use App\Models\Orderdetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,9 +12,7 @@ class CartsController extends Controller
 {
     public function index()
     {
-        $userid = auth()->user()->id;
 
-        return view('/cart/index', $data);
     }
 
     public function destroy($id)
@@ -23,9 +23,12 @@ class CartsController extends Controller
 
     static public function total()
     {
-
         $total = 0;
-
         return $total;
+    }
+
+    public function store()
+    {
+
     }
 }

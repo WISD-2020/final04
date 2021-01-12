@@ -21,7 +21,8 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `carts` (`id`, `u_id`, `p_id`, `price`, `num`, `sum`, `created_at`, `updated_at`) VALUES
-(1,	1,	1,	1,	1,	1,	NULL,	NULL);
+(1,	2,	1,	100,	9,	1,	NULL,	NULL),
+(2,	2,	2,	50,	10,	1,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -56,18 +57,21 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 DROP TABLE IF EXISTS `orderdetails`;
 CREATE TABLE `orderdetails` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `o_id` int(10) NOT NULL,
   `p_id` int(10) NOT NULL,
   `price` int(10) NOT NULL,
   `num` int(10) NOT NULL,
   `total` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `o_id` (`o_id`),
   KEY `p_id` (`p_id`),
   CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`o_id`) REFERENCES `orders` (`id`),
   CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `products` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `orderdetails` (`id`, `o_id`, `p_id`, `price`, `num`, `total`) VALUES
+(2,	1,	2,	50,	50,	500);
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
@@ -80,6 +84,8 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `orders` (`id`, `u_id`, `total`, `time`) VALUES
+(1,	2,	200,	'2021-01-12 10:15:58');
 
 DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
@@ -122,7 +128,10 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `class`, `name`, `price`, `stocks`, `status`, `img`) VALUES
 (1,	'黑巧克力',	'明治黑巧克力',	50,	50,	1,	'https://img.my-best.tw/press_component/item_part_images/ae39e5c6930863a5afd654bc00ab0fb1.jpg?ixlib=rails-3.1.0&auto=compress&q=70&lossless=0&w=640&h=640&fit=clip'),
 (2,	'黑巧克力',	'瑞士赫蒂75%黑巧克力',	80,	100,	1,	'https://b.ecimg.tw/items/DBAO0DA72651856/000001_1477461240.jpg'),
-(3,	'烏龍茶巧克力',	'I-CHOCO烏龍茶巧克力',	500,	100,	1,	'https://www.npmshops.com/main/uploads/npmshops/PrdImg/9902200500131_x.jpg.webp');
+(3,	'烏龍茶巧克力',	'I-CHOCO烏龍茶巧克力',	500,	100,	1,	'https://www.npmshops.com/main/uploads/npmshops/PrdImg/9902200500131_x.jpg.webp'),
+(4,	'黑巧克力',	'82% 純黑巧克力禮盒',	750,	100,	1,	'https://rs.joo.com.tw/website/uploads_product/website_1043/P0104300112549_4_518561.jpg?_71334'),
+(5,	'巧克力派',	'LOTTE 黑巧克力派',	200,	100,	1,	'https://tshop.r10s.com/93b/950/d228/36a1/604f/9b24/2814/118aeaadc20242ac110005.jpg?_ex=460x460'),
+(6,	'花生巧克力',	'SNICKERS 士力架花生巧克力',	50,	100,	1,	'https://www.watsons.com.tw/medias/-505g-711392.jpg?context=bWFzdGVyfGZyb250L3pvb218MTAwODM4fGltYWdlL2pwZWd8ZnJvbnQvem9vbS85MTgxOTAzMzU1OTM0LmpwZ3xlNzdkNjkxMmNhNjI3ZTU4YzczNzkwYTdlNDZhMGM4NWY2ODkyYjQzY2MzMDVhYjMyYmJiNGY3ZGMxNDY4Y2I5');
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -138,7 +147,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2kGvm3xs0O4LHAuse5e04LYi76pgyU41xnyRZ4uR',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoibzdYcnNnRlhaR1J0aE94Y1NPeEx5aXVmb0RUNDlDZXVEWFF1VW5RdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYWRtaW4iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610402279);
+('YMPnaebzloiUqb8G2n8MGJD20se27J71BzmYytVE',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiN29wWExLZ0E1SXE4RTFLNW5lZ0t6NHd2THYzc240Q215djhYQzZFSCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvb3JkZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610447941);
 
 DROP TABLE IF EXISTS `shoppingcarts`;
 CREATE TABLE `shoppingcarts` (
@@ -178,4 +187,4 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tw
 (2,	'36',	'onejun3096@gmail.com',	NULL,	'$2y$10$NaGgEeFK4/cp6MZ9DvMrmuNZOGdHrGy.rf99jD.giYTlLuPPSOd7W',	NULL,	NULL,	'jyQ5XHJqF1l5Jxk1eloJQaylGSRsI7eZOy6wg9dvYuLIlTYusAL0kwfYZtdS',	NULL,	NULL,	'2020-12-22 17:18:25',	'2021-01-05 05:02:24'),
 (3,	'2021',	'2021@gmail.com',	NULL,	'$2y$10$3BDv0A6r08JeRMqJBaPJpuYgs6qq1Ma3sRsmNQzkCSbfX63MFNqDy',	NULL,	NULL,	NULL,	NULL,	NULL,	'2021-01-07 22:43:37',	'2021-01-07 22:43:37');
 
--- 2021-01-11 21:58:32
+-- 2021-01-12 10:39:34
