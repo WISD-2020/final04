@@ -3,8 +3,6 @@
 use App\Http\Controllers\CartsController;
 use App\Models\Cart;
 
-//$carts = Cart::orderBy('id', 'ASC')->paginate(6);
-
 $userid = auth()->user()->id;
 $carts = DB::table('carts')
     ->join('products', 'carts.p_id', '=', 'products.id')
@@ -59,7 +57,7 @@ $total = CartsController::total();
 
                         </tr>
                     </div>
-                    <?php $total += $cart->price?>
+                    <?php $total += $cart->price * $cart->num?>
                 @endforeach
             </table>
             <table align="center">
@@ -73,7 +71,7 @@ $total = CartsController::total();
                     href="{{route('shop')}}">繼續選購</a>
             </button>
 
-            <button type="submit" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認付款</button>
+            <a href="{{route('order').'?cid='.$cart->id}}" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認付款</a>
             </form>
         </div>
     </div>
