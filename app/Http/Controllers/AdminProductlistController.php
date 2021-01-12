@@ -14,12 +14,12 @@ class AdminProductlistController extends Controller
             'menus' => $menus
 
         ];
-        return view('admin.menus.index',$data);
+        return view('admin.productlists.index',$data);
     }
 
     public function create()
     {
-        return view('admin.menus.create');
+        return view('admin.productlists.create');
     }
 
     public function store(Request $request)
@@ -29,32 +29,14 @@ class AdminProductlistController extends Controller
         $product->detail = $request->detail;
 
         $img = $request->file('img');
-        $img2 = $request->file('img2');
         $imgname =time().'.'.$img->getClientOriginalExtension();
-        $imgname2 =time().'.'.$img2->getClientOriginalExtension();
-        if($request->type == "個人餐")
+        if($request->type == "巧克力")
         {
-            $request->img->move(public_path('/img/個人/'), $imgname);
-            $request->img2->move(public_path('/img/個人小張/'), $imgname2);
-            $product->img = "img/個人/".$imgname;
-            $product->img2 = "img/個人小張/".$imgname2;
+            $request->img->move(public_path('/img/巧克力/'), $imgname);
+            $product->img = "img/巧克力/".$imgname;
 
         }
-        elseif ($request->type == "多人餐")
-        {
 
-            $request->img->move(public_path('/img/多人/'), $imgname);
-            $request->img2->move(public_path('/img/多人小張/'), $imgname2);
-            $product->img = "img/多人/".$imgname;
-            $product->img2 = "img/多人小張/".$imgname2;
-        }
-        elseif ($request->type == "單點")
-        {
-            $request->img->move(public_path('/img/單點/'), $imgname);
-            $request->img2->move(public_path('/img/單點小張/'), $imgname2);
-            $product->img = "img/單點/".$imgname;
-            $product->img2 = "img/單點小張/".$imgname2;
-        }
         $product->price = $request->price;
         $product->type = $request->type;
 
@@ -70,19 +52,19 @@ class AdminProductlistController extends Controller
         $product = Product::find($id);
         $data = ['product' => $product];
 
-        return view('admin.menus.edit', $data);
+        return view('admin.productlists.edit', $data);
     }
 
     public function update(Request $request, $id)
     {
         $products = Product::find($id);
         $products->update($request->all());
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.productlists.index');
     }
 
     public function destroy($id)
     {
         Product::destroy($id);
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.productlists.index');
     }
 }
