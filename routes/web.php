@@ -35,9 +35,15 @@ Route::get('/sendmail', [MailController::class, 'send']);
 Route::middleware(['auth:sanctum', 'verified'])->
 get('/products', [ProductsController::class, 'index'])->name('shop');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
+
+//購物車路由
+Route::get('/cart', function () {
     return view('/cart/index');
 })->name('cart');
+Route::post('/cart',[CartsController::class, 'index'])->name('cart.index');
+Route::delete('/cart/{id}',[CartsController::class,'destroy'])->name('cart.destroy');
+Route::post('/carte',[CartsController::class, 'store'])->name('cart.e');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/order', function () {
     return view('/order/index');

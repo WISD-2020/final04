@@ -3,6 +3,20 @@
 use App\Http\Controllers\CartsController;
 use App\Models\Cart;
 
+//$carts = Cart::orderBy('id', 'ASC')->paginate(6);
+
+$userid = auth()->user()->id;
+$carts = DB::table('carts')
+    ->join('products', 'carts.p_id', '=', 'products.id')
+    ->join('users', 'carts.u_id', '=', 'users.id')
+    ->where('carts.u_id', $userid)
+    ->select('carts.id',
+        'products.name',
+        'products.price',
+        'products.img',
+        'carts.num')
+    ->get();
+
 $total = CartsController::total();
 ?>
 
@@ -27,13 +41,31 @@ $total = CartsController::total();
 
         <div id="collapseOne" class="collapse show " aria-labelledby="headingOne" data-parent="#accordionExample">
 
-            <table width="100%">
-
-
+            <table width="100%" border="1">
                 <tr align="center">
-                    <td colspan="4"><h1>合計 ${{$total}}</h1></td>
+                    <td><b>商品圖片</b></td>
+                    <td><b>商品名稱</b></td>
+                    <td><b>單價</b></td>
+                    <td><b>數量</b></td>
                 </tr>
+                @foreach($carts as $cart)
+                    <div class="col-lg-4 col-sm-6 portfolio-item">
+                        <tr align="center">
+                            <td style="width: 100px"><img height="200px" src="{{$cart->img}}"></td>
+                            <td>{{$cart->name}}</td>
+                            <td>${{$cart->price}}</td>
+                            <td>{{$cart->num}}</td>
+
+
+                        </tr>
+                    </div>
+                    <?php $total += $cart->price?>
+                @endforeach
             </table>
+            <table align="center">
+                <td colspan="4"><h1>合計 ${{$total}}</h1></td>
+            </table>
+
         </div>
 
         <div class="mt-3 d-flex justify-content-end">
