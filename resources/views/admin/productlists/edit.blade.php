@@ -35,33 +35,36 @@
                 @csrf
 
                 <div class="form-group">
+                    <label for="class">商品類別：</label>
+                    <select name="class" id="class">
+                        <option value="巧克力">種類</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="name">商品名稱：</label>
-                    <input name="name" class="form-control" value="{{old('title',$product->name)}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="detail">商品內容：</label>
-                    <textarea id="detail" name="detail" class="form-control" rows="10">{{old('detail',$product->detail)}}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="img">圖片位置：</label>
-                    <input id=img" name="img" class="form-control" rows="10"  value="{{old('img',$product->img)}}">
+                    <input id="name" name="name" class="form-control" >
                 </div>
 
                 <div class="form-group">
                     <label for="price">價格：</label>
-                    <input id="price" name="price" class="form-control"  value="{{old('price',$product->price)}}">
+                    <input id="price" name="price" class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label for="type">商品類別：</label>
-                    <select name="type" id="type">{{old('type',$product->type)}}
-                        <option value="巧克力">種類</option>
-                    </select>
-
+                    <label for="stocks">庫存量：</label>
+                    <input id="stocks" name="stocks" class="form-control">
                 </div>
 
+                <div class="form-group">
+                    <label for="status">上/下架：</label>
+                    <input id="status" name="status" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="img">圖片位置：</label>
+                    <input type = "file" id="img" name="img" class="form-control" >
+                </div>
 
                 <div class="text-right">
                     <button type="submit" class="btn btn-success">更新</button>

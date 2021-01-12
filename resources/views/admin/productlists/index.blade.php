@@ -31,22 +31,25 @@
                     <thead>
                     <tr>
                         <th  style="text-align: center">商品編號</th>
-                        <th >商品名稱</th>
-                        <th  style="text-align: center">商品內容</th>
-                        <th  style="text-align: center">圖片位置</th>
-                        <th  style="text-align: center">價格</th>
                         <th  style="text-align: center">商品類別</th>
+                        <th >商品名稱</th>
+                        <th  style="text-align: center">價格</th>
+                        <th  style="text-align: center">庫存量</th>
+                        <th  style="text-align: center">上/下架</th>
+                        <th  style="text-align: center">圖片位置</th>
+
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($products as $product)
                         <tr>
                             <td style="text-align: center">{{ $product->id }}</td>
+                            <td style="text-align: center">{{$product->class}}</td>
                             <td>{{$product->name}}</td>
-                            <td style="text-align: center">{{$product->detail}}</td>
-                            <td style="text-align: center">{{$product->img}}</td>
                             <td style="text-align: center">{{$product->price}}</td>
-                            <td style="text-align: center">{{$product->type}}</td>
+                            <td style="text-align: center">{{$product->stocks}}</td>
+                            <td style="text-align: center">{{$product->status}}</td>
+                            <td style="text-align: center">{{$product->img}}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary" href="{{ route('admin.productlists.edit', $menu->id) }}">編輯</a>
 
