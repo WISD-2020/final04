@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label for="type">商品類別：</label>
                     <select name="type" id="type">{{old('type',$product->type)}}
-                        <option value="單人餐">種類</option>
+                        <option value="巧克力">種類</option>
                     </select>
 
                 </div>
