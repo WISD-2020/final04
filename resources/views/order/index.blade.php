@@ -1,33 +1,15 @@
 <?php
 
-use App\Http\Controllers\OrdersController;
 use App\Models\Orders;
-use App\Models\Orderdetail;
-
 
 $userid = auth()->user()->id;
 $ODs = DB::table('orders')
     ->where('orders.u_id', $userid)
     ->select('orders.id',
-        'orders.total')
+        'orders.total',
+        'created_at'
+    )
     ->get();
-
-
-//$userid = auth()->user()->id;
-//$ODs = DB::table('orders')
-//    ->join('orderdetails', 'orders.id', '=', 'orderdetails.o_id')
-//    ->join('products', 'orderdetails.p_id', '=', 'products.id')
-//    ->join('users', 'orders.u_id', '=', 'users.id')
-//    ->where('orders.u_id', $userid)
-//    ->select('orders.id',
-//        'products.img',
-//        'products.name',
-//        'products.price',
-//        'orderdetails.num',
-//        'products.img',
-//        'orders.total')
-//    ->get();
-
 
 $total = 0;
 ?>
@@ -55,14 +37,16 @@ $total = 0;
 
             <table width="100%" border="1">
                 <tr align="center">
-                    <td  width="20%"><b>訂單編號</b></td>
+                    <td width="20%"><b>訂單編號</b></td>
                     <td><b>金額</b></td>
+                    <td width="20%"><b>建立時間</b></td>
                 </tr>
                 @foreach($ODs as $OD)
                     <div class="col-lg-4 col-sm-6 portfolio-item">
                         <tr align="center">
                             <td>{{$OD->id}}</td>
                             <td>${{$OD->total}}</td>
+                            <td>{{$OD->created_at}}</td>
                         </tr>
                     </div>
 

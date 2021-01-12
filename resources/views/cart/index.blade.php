@@ -22,7 +22,6 @@ $total = CartsController::total();
 
 ?>
 
-
 @extends('layouts.master')
 @section('title','購物車 | final04')
 @section('content')
@@ -85,12 +84,10 @@ $total = CartsController::total();
                     href="{{route('shop.index')}}">繼續選購</a>
             </button>
 
-            @foreach($carts as $cart)
-                <form action="{{route('order.store')}}" method="POST" style="display:inline">{{ csrf_field() }}
-                    <input type="hidden" name="total" value="{{$cart->price * $cart->num}}">
-                    <button type="submit" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認結帳</button>
-                </form>
-            @endforeach
+            <form action="{{route('order.store')}}" method="POST" style="display:inline">{{ csrf_field() }}
+                <input type="hidden" name="total" value="{{$total}}">
+                <button type="submit" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認結帳</button>
+            </form>
         </div>
     </div>
 

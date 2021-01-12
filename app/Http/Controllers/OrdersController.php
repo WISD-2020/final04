@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +11,37 @@ class OrdersController extends Controller
 
     public function index()
     {
-        return view('/order/index');
+
+        $userid = auth()->user()->id;
+
+        $ODs = DB::table('orders')
+            ->where('orders.u_id', $userid)
+            ->select('orders.id',
+                'orders.total',
+                'created_at'
+            )
+            ->get();
+
+        //$userid = auth()->user()->id;
+        //$ODs = DB::table('orders')
+        //    ->join('orderdetails', 'orders.id', '=', 'orderdetails.o_id')
+        //    ->join('products', 'orderdetails.p_id', '=', 'products.id')
+        //    ->join('users', 'orders.u_id', '=', 'users.id')
+        //    ->where('orders.u_id', $userid)
+        //    ->select('orders.id',
+        //        'products.img',
+        //        'products.name',
+        //        'products.price',
+        //        'orderdetails.num',
+        //        'products.img',
+        //        'orders.total')
+        //    ->get();
+
+        $data = [
+            'ODs' => $ODs
+        ];
+
+        return view('order.index', $data);
     }
 
     public function create()
