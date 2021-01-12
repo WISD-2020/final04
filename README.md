@@ -20,34 +20,37 @@
 
 前台
 
-- 購物區 
+- 商品區 
   Route::middleware(['auth:sanctum', 'verified'])
   ->get('/products', [ProductsController::class, 'index'])
   ->name('shop.index');
-  [3A732036 葉軍佑]
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
 - 購物車 
   Route::middleware(['auth:sanctum', 'verified'])
   ->get('/cart', [CartsController::class, 'index'])
   ->name('cart.index');
-  [3A732036 葉軍佑]
+  [3A732036 葉軍佑](https://github.com/3A732036)
   
   Route::middleware(['auth:sanctum', 'verified'])
   ->delete('/cart/{id}', [CartsController::class, 'destroy'])
   ->name('cart.destroy');
-  [3A732036 葉軍佑]
+  [3A732036 葉軍佑](https://github.com/3A732036)
   
   Route::middleware(['auth:sanctum', 'verified'])
   ->post('/cartadd', [CartsController::class, 'store'])
   ->name('cart.add');
-  [3A732036 葉軍佑]
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
 - 訂單 Route::middleware(['auth:sanctum', 'verified'])
   ->get('/order', [OrdersController::class, 'index'])
-  ->name('order.index'); Route::middleware(['auth:sanctum', 'verified'])
+  ->name('order.index');
+  [3A732036 葉軍佑](https://github.com/3A732036)
+
+  Route::middleware(['auth:sanctum', 'verified'])
   ->post('/order', [OrdersController::class, 'store'])
   ->name('order.store');
-  [3A732036 葉軍佑]
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
 後台
 - 
