@@ -3,6 +3,7 @@
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminUserController;
 
 use App\Http\Controllers\ProductsController;
 
@@ -19,6 +20,11 @@ use App\Http\Controllers\ProductsController;
 //管理員
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
+
+    Route::get('userlists', [AdminUserController::class, 'index'])->name('admin.userlists.index');                            //會員管理(顯示所有會員)
+    Route::get('userlists/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.userlists.edit');                    //編輯會員資料
+    Route::patch('userlists/{id}',[AdminUserController::class, 'update'])->name('admin.userlists.update');                    //更新會員資料
+    Route::delete('userlists/{id}',[AdminUserController::class, 'destroy'])->name('admin.userlists.destroy');
 });
 
 
