@@ -1,6 +1,7 @@
 <!-- Footer -->
-<footer class="py-md-4 bg-dark" style="position: absolute; bottom: -100%; width:100%;">
+<br><br><br><br>
+<footer style="position: absolute; bottom: auto; width:100%;">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; final04</p>
+        <p class="m-0 text-center text-black-50">Copyright &copy; final04</p>
     </div>
 </footer>
