@@ -19,7 +19,6 @@ class CreateCartsTable extends Migration
             $table->integer('p_id')->unsigned();
             $table->integer('price');
             $table->integer('num');
-            $table->integer('sum');
             $table->timestamps();
         });
     }

@@ -29,7 +29,31 @@
                             <p class="">    {{$product->name}}</p>
                             <p class="">
                             <h2>${{$product->price}}</h2></p>
-                            <a href="{{route('cart').'?gid='.$product->id}}" class="btn btn-primary">加入購物車</a>
+                            <form action="{{route('cart.add')}}" method="post" role="form">
+                                @method('post')
+                                @csrf
+                                <label for="quantity">數量:</label>
+                                <select id="num" name="num">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <br><br>
+                                <input type="hidden" name="p_id" value="{{$product->id}}">
+                                <input type="hidden" name="name" value="{{$product->name}}">
+                                <input type="hidden" name="price" value="{{$product->price}}">
+
+                                <button type="submit" onclick="return confirm('是否確認加入購物車?')"
+                                        class="btn btn-sm btn-primary" style="height: 50px;width: 200px">加入購物車
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

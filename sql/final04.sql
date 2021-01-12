@@ -14,15 +14,15 @@ CREATE TABLE `carts` (
   `p_id` int(10) unsigned NOT NULL,
   `price` int(11) NOT NULL,
   `num` int(11) NOT NULL,
-  `sum` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `carts` (`id`, `u_id`, `p_id`, `price`, `num`, `sum`, `created_at`, `updated_at`) VALUES
-(1,	2,	1,	100,	9,	1,	NULL,	NULL),
-(2,	2,	2,	50,	10,	1,	NULL,	NULL);
+INSERT INTO `carts` (`id`, `u_id`, `p_id`, `price`, `num`, `updated_at`, `created_at`) VALUES
+(1,	2,	1,	100,	9,	'2021-01-12 15:18:05',	'0000-00-00 00:00:00'),
+(2,	2,	2,	50,	10,	'2021-01-12 15:18:05',	'0000-00-00 00:00:00'),
+(8,	2,	3,	500,	3,	'2021-01-12 07:23:38',	'2021-01-12 07:23:38');
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -147,7 +147,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('YMPnaebzloiUqb8G2n8MGJD20se27J71BzmYytVE',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiN29wWExLZ0E1SXE4RTFLNW5lZ0t6NHd2THYzc240Q215djhYQzZFSCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvb3JkZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610447941);
+('oV73JIkV66b9ak3M26JBUBJO0tgDZ4kUbRyxLz3a',	2,	'::1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',	'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiTk1MbU1rOWhQcmZJZG5oV25CV2U3dURHRW5pR2dwUUhwbHdBNExOcSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvb3JkZXIiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkTmFHZ0VlRks0L2NwNk1aOUR2TXJtdU5aT0dkSHJHeS5yZjk5akQuZ2lZVGxMdVBQU09kN1ciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJE5hR2dFZUZLNC9jcDZNWjlEdk1ybXVOWk9HZEhyR3kucmY5OWpELmdpWVRsTHVQUFNPZDdXIjt9',	1610465254);
 
 DROP TABLE IF EXISTS `shoppingcarts`;
 CREATE TABLE `shoppingcarts` (
@@ -184,7 +184,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
 (1,	'JUN-YOU YE.',	'3a732036@gm.student.ncut.edu.tw',	NULL,	'$2y$10$qa1350oFX2y0PBvRDJizMut39k8CNcQvU/fLxXkLDiTXB2TU/9eIK',	NULL,	NULL,	NULL,	NULL,	NULL,	'2020-12-18 00:09:10',	'2020-12-18 00:09:10'),
-(2,	'36',	'onejun3096@gmail.com',	NULL,	'$2y$10$NaGgEeFK4/cp6MZ9DvMrmuNZOGdHrGy.rf99jD.giYTlLuPPSOd7W',	NULL,	NULL,	'jyQ5XHJqF1l5Jxk1eloJQaylGSRsI7eZOy6wg9dvYuLIlTYusAL0kwfYZtdS',	NULL,	NULL,	'2020-12-22 17:18:25',	'2021-01-05 05:02:24'),
+(2,	'36',	'onejun3096@gmail.com',	NULL,	'$2y$10$NaGgEeFK4/cp6MZ9DvMrmuNZOGdHrGy.rf99jD.giYTlLuPPSOd7W',	NULL,	NULL,	'FWqThCvwGBqMiXniY3SYfgAkETkGW6uRASY7yFZQ38otVoLLcCnUXoQIrgqs',	NULL,	NULL,	'2020-12-22 17:18:25',	'2021-01-05 05:02:24'),
 (3,	'2021',	'2021@gmail.com',	NULL,	'$2y$10$3BDv0A6r08JeRMqJBaPJpuYgs6qq1Ma3sRsmNQzkCSbfX63MFNqDy',	NULL,	NULL,	NULL,	NULL,	NULL,	'2021-01-07 22:43:37',	'2021-01-07 22:43:37');
 
--- 2021-01-12 10:39:34
+-- 2021-01-12 15:28:44

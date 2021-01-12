@@ -1,5 +1,8 @@
 <?php
+
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\OrdersController;
 use App\Models\Cart;
 
 ?>
@@ -16,15 +19,15 @@ use App\Models\Cart;
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('shop')}}">商品區</a>
+                    <a class="nav-link" href="{{route('shop.index')}}">商品區</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('cart')}}">購物車</a>
+                    <a class="nav-link" href="{{route('cart.index')}}">購物車</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('order')}}">我的訂單</a>
+                    <a class="nav-link" href="{{route('order.index')}}">我的訂單</a>
                 </li>
 
                 <li class="nav-item">
