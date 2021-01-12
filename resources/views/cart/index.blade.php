@@ -72,10 +72,10 @@ $total = CartsController::total();
 
         <div class="mt-3 d-flex justify-content-end">
             <button class="btn btn-secondary mr-2" style="background-color: white"><a
-                    href="{{route('shop')}}">繼續選購</a>
+                    href="{{route('shop.index')}}">繼續選購</a>
             </button>
 
-            <a href="{{route('order').'?cid='.$cart->id}}" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認付款</a>
+            <a href="{{route('order.index')}}" onclick="return confirm('是否確認結帳?')" class="btn btn-primary">確認付款</a>
             </form>
         </div>
     </div>

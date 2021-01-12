@@ -12,7 +12,20 @@ class CartsController extends Controller
 {
     public function index()
     {
+        $userid = auth()->user()->id;
 
+        $carts = DB::table('carts')
+            ->join('products', 'carts.p_id', '=', 'products.id')
+            ->join('users', 'carts.u_id', '=', 'users.id')
+            ->where('carts.u_id', $userid)
+            ->select('carts.id',
+                'products.name',
+                'products.price',
+                'products.img',
+                'carts.num')
+            ->get();
+
+        return view('/cart/index', $carts);
     }
 
     public function destroy($id)
