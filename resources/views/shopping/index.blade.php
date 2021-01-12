@@ -27,14 +27,15 @@
                                 <img height="200px" src="{{$product->img}}">
                             </p>
                             <p class="">    {{$product->name}}</p>
-                            <p class=""><h2>${{$product->price}}</h2></p>
-
+                            <p class="">
+                            <h2>${{$product->price}}</h2></p>
                             <a href="{{route('cart').'?gid='.$product->id}}" class="btn btn-primary">加入購物車</a>
                         </div>
                     </div>
                 </div>
 
             @endforeach
+
         </div>
     </div>
 @endsection

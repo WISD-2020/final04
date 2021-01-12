@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OrdersController;
 use App\Models\Order;
+use App\Models\Orderlist;
 
 $userid = auth()->user()->id;
 $ODs = DB::table('orders')
@@ -17,6 +18,7 @@ $ODs = DB::table('orders')
         'products.img',
         'orders.total')
     ->get();
+
 
 $total = 0;
 ?>
@@ -60,7 +62,7 @@ $total = 0;
                             <td>${{$sum = $OD->price*$OD->num}}</td>
                         </tr>
                     </div>
-                    <?php $total +=$sum?>
+                    <?php $total += $sum?>
                 @endforeach
             </table>
             <table align="center">

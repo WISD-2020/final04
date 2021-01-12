@@ -13,7 +13,6 @@ class CartsController extends Controller
     public function index()
     {
 
-        return view('/cart', $carts);
     }
 
     public function destroy($id)
@@ -24,9 +23,12 @@ class CartsController extends Controller
 
     static public function total()
     {
-
         $total = 0;
-
         return $total;
+    }
+
+    public function store()
+    {
+
     }
 }

@@ -4,6 +4,8 @@ use App\Http\Controllers\CartsController;
 use App\Models\Cart;
 
 $userid = auth()->user()->id;
+
+// index
 $carts = DB::table('carts')
     ->join('products', 'carts.p_id', '=', 'products.id')
     ->join('users', 'carts.u_id', '=', 'users.id')
@@ -15,7 +17,9 @@ $carts = DB::table('carts')
         'carts.num')
     ->get();
 
+
 $total = CartsController::total();
+
 ?>
 
 
