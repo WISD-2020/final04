@@ -52,7 +52,9 @@
             <li>
                 <a href="{{route('admin.productlists.index')}}"><i class="fa fa-fw fa-edit"></i> 商品管理</a>
             </li>
-
+            <li>
+                <a href="{{route('admin.orderlists.index')}}"><i class="fa fa-fw fa-edit"></i> 訂單管理</a>
+            </li>
 
 
         </ul>
