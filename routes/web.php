@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminProductlistController;
+use App\Http\Controllers\AdminOrderlistController;
 
 use App\Http\Controllers\ProductsController;
 
@@ -36,7 +37,10 @@ Route::prefix('admin')->group(function () {
     Route::patch('productlists/{id}',[AdminProductlistController::class, 'update'])->name('admin.productlists.update');       //更新商品
     Route::delete('productlists/{id}',[AdminProductlistController::class, 'destroy'])->name('admin.productlists.destroy');    //刪除商品
 
-
+    Route::get('orderlists', [AdminOrderlistController::class, 'index'])->name('admin.orderlists.index');                   //訂單管理(顯示所有訂單)
+    Route::get('orderlists/{id}/edit', [AdminOrderlistController::class, 'edit'])->name('admin.orderlists.edit');           //編輯訂單
+    Route::patch('orderlists/{id}',[AdminOrderlistController::class, 'update'])->name('admin.orderlists.update');           //更新訂單
+    Route::delete('orderlists/{id}',[AdminOrderlistController::class, 'destroy'])->name('admin.orderlists.destroy');        //刪除訂單
 });
 
 
