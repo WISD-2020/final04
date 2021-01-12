@@ -1,5 +1,8 @@
 <?php
+
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\OrdersController;
 use App\Models\Cart;
 
 ?>

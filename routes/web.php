@@ -70,8 +70,8 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->delete('/cart/{id}', [CartsController::class, 'destroy'])
     ->name('cart.destroy');
 Route::middleware(['auth:sanctum', 'verified'])
-    ->post('/cart/add', [CartsController::class, 'store'])
-    ->name('shop.store');
+    ->post('/cartadd', [CartsController::class, 'store'])
+    ->name('cart.add');
 
 // 訂單
 Route::middleware(['auth:sanctum', 'verified'])

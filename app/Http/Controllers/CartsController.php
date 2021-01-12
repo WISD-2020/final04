@@ -40,8 +40,21 @@ class CartsController extends Controller
         return $total;
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $userid = auth()->user()->id;
 
+        $cart = new cart();
+        $cart->u_id = $userid;
+        $cart->p_id = $request->input('p_id');
+        $cart->price = $request->input('price');
+        $cart->num = $request->input('num');
+        $cart->save();
+
+        $CCs = Cart::orderBy('id', 'ASC')->paginate(20);
+        $data = [
+            'CCs' => $CCs
+        ];
+        return view('cart.index', $data);
     }
 }
