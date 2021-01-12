@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Order;
+use App\Models\Orderdetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class OrdersController extends Controller
+class OrderdetailsController extends Controller
 {
 
     public function index()
@@ -24,13 +23,13 @@ class OrdersController extends Controller
     {
         $userid = auth()->user()->id;
 
-        $os = new Order();
-        $os->u_id = $userid;
-        $os->total = $request->input('total');
-        $os->save();
-        $orders = Order::orderBy('id', 'ASC')->paginate(100);
+        $ods = new Orderdetail();
+        $ods->u_id = $userid;
+        $ods->total = $request->input('total');
+        $ods->save();
+        $orderdetails = Orderdetail::orderBy('id', 'ASC')->paginate(100);
         $data = [
-            'orders' => $orders
+            'orders' => $orderdetails
         ];
 
         return view('order.index', $data);

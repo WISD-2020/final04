@@ -77,6 +77,9 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/order', [OrdersController::class, 'index'])
     ->name('order.index');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->post('/order', [OrdersController::class, 'store'])
+    ->name('order.store');
 
 
 // 個人資料
