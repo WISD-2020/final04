@@ -9,9 +9,9 @@ class AdminProductlistController extends Controller
 {
     public function index()
     {
-        $productlists1 = Product::orderBy('type','ASC')->paginate(12);
+        $productlists1 = Product::orderBy('class','ASC')->paginate(12);
         $data = [
-            'productlists' => $productlists1
+            'product' => $productlists1
 
         ];
         return view('admin.productlists.index',$data);
@@ -24,23 +24,23 @@ class AdminProductlistController extends Controller
 
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->name;
-        $product->detail = $request->detail;
+        $products = new Product();
+        $products->name = $request->name;
+        $products->detail = $request->detail;
 
         $img = $request->file('img');
         $imgname =time().'.'.$img->getClientOriginalExtension();
         if($request->type == "巧克力")
         {
             $request->img->move(public_path('/img/巧克力/'), $imgname);
-            $product->img = "img/巧克力/".$imgname;
+            $products->img = "img/巧克力/".$imgname;
 
         }
 
-        $product->price = $request->price;
-        $product->type = $request->type;
+        $products->price = $request->price;
+        $products->class = $request->class;
 
-        $product->save();
+        $products->save();
 
 
         //Product::create($request->all());
@@ -49,8 +49,8 @@ class AdminProductlistController extends Controller
 
     public function edit($id)
     {
-        $product = Product::find($id);
-        $data = ['product' => $product];
+        $products = Product::find($id);
+        $data = ['products' => $products];
 
         return view('admin.productlists.edit', $data);
     }
