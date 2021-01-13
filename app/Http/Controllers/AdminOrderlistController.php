@@ -16,7 +16,7 @@ class AdminOrderlistController extends Controller
             ->join('products','orderdetails.products_id','=','products.id')
             ->join('orderlists','orderlists.id','=','orderdetails.orderlists_id')
             ->join('users','orderlists.users_id','users.id')
-            ->select('orderdetails.orderlists_id','users_id',DB::raw('group_concat(products.name," / ",quantity )as name'), 'orderlists.total','orderlists.method', 'orderlists.status','orderdetails.created_at' )
+            ->select('orderdetails.orderlists_id','users_id',DB::raw('group_concat(products.name," / ",quantity )as name'), 'orderlists.price', 'orderlists.num','orderlists.total','orderdetails.created_at' )
             ->groupBy('orderlists_id','created_at')
             ->orderBy('orderlists.status','DESC')
             ->paginate(10);
@@ -35,7 +35,7 @@ class AdminOrderlistController extends Controller
             ->join('products','orderdetails.products_id','=','products.id')
             ->join('orderlists','orderlists.id','=','orderdetails.orderlists_id')
             ->join('users','orderlists.users_id','users.id')
-            ->select('orderdetails.orderlists_id','users_id',DB::raw('group_concat(products.name," / ",quantity )as name'), 'orderlists.total','orderlists.method', 'orderlists.status','orderdetails.created_at' )
+            ->select('orderdetails.orderlists_id','users_id',DB::raw('group_concat(products.name," / ",quantity )as name'), 'orderlists.price', 'orderlists.num','orderlists.total','orderdetails.created_at' )
             ->where('orderlists.id',$id)
             ->groupBy('orderlists_id','created_at')
             ->get();

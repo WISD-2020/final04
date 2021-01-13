@@ -32,10 +32,9 @@
                     <tr>
                         <th  style="text-align: center">訂單編號</th>
                         <th >會員編號</th>
+                        <th  style="text-align: center">單品價格</th>
                         <th  style="text-align: center">商品名稱/數量</th>
                         <th  style="text-align: center">總金額</th>
-                        <th  style="text-align: center">訂單狀態</th>
-                        <th  style="text-align: center">方法</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,10 +42,9 @@
                         <tr>
                             <td style="text-align: center">{{ $orderlist->orderlists_id }}</td>
                             <td>{{$orderlist->users_id}}</td>
-                            <td style="text-align: center">{{$orderlist->name}}</td>
+                            <td style="text-align: center">{{$orderlist->price}}</td>
+                            <td style="text-align: center">{{$orderlist->num}}</td>
                             <td style="text-align: center">{{$orderlist->total}}</td>
-                            <td style="text-align: center">{{$orderlist->status}}</td>
-                            <td style="text-align: center">{{$orderlist->method}}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary" href="{{ route('admin.orderlists.edit', $orderlist->orderlists_id) }}">編輯</a>
 

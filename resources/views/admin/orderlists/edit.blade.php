@@ -39,31 +39,29 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="id">訂單編號：</label>
-                        <input name="id" class="form-control" readonly="readonly" value="{{old('id',$ordlis->orderlists_id)}}">
+                        <label for="o_id">訂單編號：</label>
+                        <input name="o_id" class="form-control" readonly="readonly" value="{{old('id',$ordlis->o_id)}}">
                     </div>
 
                     <div class="form-group">
-                        <label for="users_id">會員編號：</label>
-                        <input name="users_id" name="users_id" class="form-control" readonly="readonly" value="{{old('users_id',$ordlis->users_id)}}">
+                        <label for="p_id">產品名稱：</label>
+                        <input id="p_id" name="p_id" class="form-control"  rows="10"  value="{{old('p_id',$ordlis->p_id)}}">
                     </div>
 
                     <div class="form-group">
-                        <label for="products_id">產品名稱/數量：</label>
-                        <input id="products_id" name="products_id" class="form-control"  rows="10"  value="{{old('products_id',$ordlis->name)}}">
+                        <label for="total">單價：</label>
+                        <input id="price" name="price" class="form-control"  value="{{old('price',$ordlis->price)}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="num">數量：</label>
+                        <input id="num" name="num" class="form-control"  value="{{old('num',$ordlis->num)}}">
                     </div>
 
                     <div class="form-group">
                         <label for="total">總金額：</label>
                         <input id="total" name="total" class="form-control"  value="{{old('total',$ordlis->total)}}">
                     </div>
-
-                    <div class="form-group">
-                        <label for="status">訂單狀態：</label>
-                        <select name="status" id="status">{{old('status',$ordlis->status)}}
-                            <option value="準備中">準備中</option>
-                            <option value="已完成">已完成</option>
-                        </select>
 
 
                     <div class="text-right">
@@ -72,9 +70,6 @@
                 </form>
 
             @endforeach
-
-
-
 
             <p>&nbsp;</p>
             <p>&nbsp;</p>
