@@ -1,62 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## 系統名稱
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### 巧克力購物網站
 
-## About Laravel
+## 系統畫面
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 會員 - 商品區
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<a href="https://i.imgur.com/jwiiz9y.png"><img src="https://i.imgur.com/jwiiz9y.png" title="source: imgur.com" /></a>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 會員 - 購物車
 
-## Learning Laravel
+<a href="https://i.imgur.com/SQvZGp4.png"><img src="https://i.imgur.com/SQvZGp4.png" title="source: imgur.com" /></a>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 會員 - 訂單
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<a href="https://i.imgur.com/IXJ2E3B.png"><img src="https://i.imgur.com/IXJ2E3B.png" title="source: imgur.com" /></a>
 
-## Laravel Sponsors
+## 系統的主要功能
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+前台
 
-### Premium Partners
+- 商品區 Route::middleware(['auth:sanctum', 'verified'])
+  ->get('/products', [ProductsController::class, 'index'])
+  ->name('shop.index');
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+- 購物車 Route::middleware(['auth:sanctum', 'verified'])
+  ->get('/cart', [CartsController::class, 'index'])
+  ->name('cart.index');
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
-## Contributing
+  Route::middleware(['auth:sanctum', 'verified'])
+  ->delete('/cart/{id}', [CartsController::class, 'destroy'])
+  ->name('cart.destroy');
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  Route::middleware(['auth:sanctum', 'verified'])
+  ->post('/cartadd', [CartsController::class, 'store'])
+  ->name('cart.add');
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
-## Code of Conduct
+- 訂單 Route::middleware(['auth:sanctum', 'verified'])
+  ->get('/order', [OrdersController::class, 'index'])
+  ->name('order.index');
+  [3A732036 葉軍佑](https://github.com/3A732036)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  Route::middleware(['auth:sanctum', 'verified'])
+  ->post('/order', [OrdersController::class, 'store'])
+  ->name('order.store');
+  [3A732036 葉軍佑](https://github.com/3A732036)
+  
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ERD
 
-## License
+<a href="https://i.imgur.com/ImEDf48.png"><img src="https://i.imgur.com/ImEDf48.png" title="source: imgur.com" /></a>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 關聯式綱要圖
+
+<a href="https://i.imgur.com/vNMR9ld.jpg"><img src="https://i.imgur.com/vNMR9ld.jpg" title="source: imgur.com" /></a>
+
+## 初始專案與DB負責的同學
+
+初始專案、DB：[3A732036 葉軍佑](https://github.com/3A732036)
+
+## 額外使用的套件或樣板
+
+前台樣板：[Modern Business](https://startbootstrap.com/template/modern-business)
+
+後台樣板：[Sidebar](https://startbootstrap.com/template/simple-sidebar)
+
+## 系統測試資料存放位置
+
+     final04底下的sql資料夾
+
+## 系統使用者測試帳號
+
+前台
+
+     帳號：3a732036@gm.student.ncut.edu.tw
+     密碼：3a732036
+
+## 系統開發人員與工作分配
+
+[3A732036 葉軍佑](https://github.com/3A732036)
+
+      前台
+      初始專案
+      資料庫創建
+      readme 撰寫
+      期中報告製作
+
+[3A732043 吳辰恩](https://github.com/3A732043)
+
+      後台
+      期中報告製作
+
+

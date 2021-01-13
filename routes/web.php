@@ -47,8 +47,6 @@ Route::prefix('admin')->group(function () {
     Route::delete('orderlists/{id}', [AdminOrderlistController::class, 'destroy'])->name('admin.orderlists.destroy');        //刪除訂單
 });
 
-
-// 會員路由
 Route::middleware(['auth:sanctum', 'verified'])->get('/', [ProductsController::class, 'index'])->name('shop');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -57,11 +55,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/sendmail', [MailController::class, 'send']);
 
+// 會員路由
+
 // 購物區
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/products', [ProductsController::class, 'index'])
     ->name('shop.index');
-
 
 // 購物車
 Route::middleware(['auth:sanctum', 'verified'])
